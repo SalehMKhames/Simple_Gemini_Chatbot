@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:model/model.dart';
 import 'package:model/src/message_source_type.dart';
 
 class Message extends Equatable {
