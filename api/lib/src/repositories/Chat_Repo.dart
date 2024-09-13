@@ -7,7 +7,10 @@ class ChatRepo
 
   Future<Message> createUserMessage(String chatRoomId, Map<String, dynamic> data) async
   {
-    throw UnimplementedError();
+    final message = Message.fromJson(data);
+    _chatrooms.putIfAbsent(chatRoomId, () => []);
+    _chatrooms[chatRoomId]?.add(message);
+    return message;
   }
 
   Stream<Message> createModelMessage(String chatRoomId, Map<String, dynamic> data)
