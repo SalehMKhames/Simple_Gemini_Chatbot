@@ -35,5 +35,5 @@ Future<Response> onRequest(RequestContext context) async {
       } catch (err) {}
     });
   });
-  return Response(body: 'Welcome to Dart Frog!');
+  return handler(context);
 }
