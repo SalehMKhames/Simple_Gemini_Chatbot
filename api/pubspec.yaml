@@ -13,10 +13,11 @@ dependencies:
   envied: ^0.5.4+1
   model:
     path: ../packages/model
+  uuid:
 
 dev_dependencies:
   mocktail: ^1.0.3
   test: ^1.25.5
-  very_good_analysis: ^5.1.0
+  very_good_analysis: ^6.0.0
   envied_generator: ^0.5.4+1
   build_runner: ^2.4.12

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_time_gemini_ai_chatbot/screens/Chat_Screen.dart';
-import 'package:real_time_gemini_ai_chatbot/screens/repository/Chat_repository.dart';
+import 'package:real_time_gemini_ai_chatbot/repository/Chat_repository.dart';
 import 'package:real_time_gemini_ai_chatbot/web_socket_client.dart';
 
 void main() {

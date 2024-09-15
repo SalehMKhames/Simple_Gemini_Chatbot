@@ -22,6 +22,30 @@ class _ChatScreenState extends State<ChatScreen>
   @override
   initState(){
     _startWebSocket();
+
+    chatRepo.subscribeToMessageUpdates((message)
+    {
+      //Update an existing message
+      if(message['event'] == 'message.updated')
+      {
+        final updatedMessage = Message.fromJson(message['data']);
+        setState(() {
+          messages = messages.map((message){
+            if(message.id == updatedMessage.id)
+            {
+              return updatedMessage;
+            }
+            return message;
+          }).toList();
+        });
+        return;
+      }
+
+      //For the new messages
+      setState(() {
+        messages.add(Message.fromJson(message));
+      });
+    });
     super.initState();
   }
 
@@ -70,7 +94,7 @@ class _ChatScreenState extends State<ChatScreen>
       ),
 
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF030303),
+        color: Colors.black38,
         child: Row
         (
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +107,7 @@ class _ChatScreenState extends State<ChatScreen>
                 decoration: const InputDecoration
                   (
                     hintText: "Type your message",
-                    hintStyle: TextStyle(color: Colors.white54),
+                    hintStyle: TextStyle(color: Colors.white),
                     border: OutlineInputBorder(borderSide: BorderSide.none)
                   ),
               ),
@@ -105,7 +129,7 @@ class _ChatScreenState extends State<ChatScreen>
                 _createMessage(message);
                 _textController.clear();
               },
-              icon: const Icon(Icons.send_rounded, color: Colors.white60,),
+              icon: const Icon(Icons.send_rounded, color: Colors.white,),
             ),
           ],
         ),

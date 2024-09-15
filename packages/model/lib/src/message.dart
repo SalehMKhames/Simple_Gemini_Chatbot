@@ -13,7 +13,11 @@ class Message extends Equatable {
       required this.sourceType,
       required this.createdAt});
 
-  Message copyWith(String? id, String? content, MessageSourceType? sourceType, DateTime? createdAt)
+  Message copyWith(
+      {String? id,
+      String? content,
+      MessageSourceType? sourceType,
+      DateTime? createdAt})
   {
     return Message
       (

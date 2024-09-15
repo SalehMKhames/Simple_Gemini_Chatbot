@@ -26,7 +26,15 @@ Future<Response> onRequest(RequestContext context) async {
             const chatRoomId = '1';
             chatRepo.createUserMessage(chatRoomId, data as Map<String, dynamic>)
             .then((value) {
-              print(value);
+              final responseStream = chatRepo.createModelMessage(chatRoomId, data);
+
+              responseStream.listen((data){
+                final modelMessage = data.$1;
+                final eventType = data.$2;
+                //From the server to the client
+                channel.sink.add(json.encode({'event': eventType, 'data': modelMessage.toJson()}));
+              });
+              
               return;
             });
             break;
